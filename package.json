@@ -1,0 +1,26 @@
+{
+  "name": "backend-tattoo-studio",
+  "version": "1.0.0",
+  "description": "This project showcases my skills in basic backend development with TypeScript, Express.js, TypeORM and MySQL. It is designed for a tattoo and piercing studio, providing essential functionality for managing client data and appointments.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paco-fuentes/backend-tattoo-studio.git"
+  },
+  "keywords": [
+    "backend",
+    "typescript",
+    "typeorm",
+    "express",
+    "mysql"
+  ],
+  "author": "Paco Fuentes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/paco-fuentes/backend-tattoo-studio/issues"
+  },
+  "homepage": "https://github.com/paco-fuentes/backend-tattoo-studio#readme"
+}
