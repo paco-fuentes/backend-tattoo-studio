@@ -1,5 +1,6 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
+import { User1698502319949 } from "./migration/1698502319949-user"
 
 export const AppDataSource = new DataSource({
     type: "mysql",
@@ -8,8 +9,8 @@ export const AppDataSource = new DataSource({
     username: "root",
     password: "12345678",
     database: "tattoo-studio-db",
-    entities: [],
-    migrations: [],
+    entities: [User1698502319949],
+    migrations: [User1698502319949],
     synchronize: false,
     logging: false,
 })

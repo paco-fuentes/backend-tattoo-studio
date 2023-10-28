@@ -5,7 +5,7 @@ import { AppDataSource } from "./db";
 const app = express()
 const PORT = 3000;
 
-app.get('/',(req:Request,res:Response)=>{
+app.get('/helloworld',(req:Request,res:Response)=>{
     res.send('Hello world!')
 });
 
