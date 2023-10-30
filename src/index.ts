@@ -1,5 +1,11 @@
+// primero importolas dependencias y luego los imports de cada archivo
 
+// import express
 import express, { Request, Response } from "express"
+// lo importo antes 
+import 'dotenv/config'
+
+
 // import object from db.ts
 import { AppDataSource } from "./db";
 
