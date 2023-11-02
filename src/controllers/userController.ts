@@ -1,4 +1,6 @@
 import { Response, Request } from "express";
+import  jwt  from "jsonwebtoken";
+import bcrypt from "bcrypt";
 import { User } from "../models/User";
 
 const register = async (req: Request, res: Response) => {
@@ -7,17 +9,19 @@ const register = async (req: Request, res: Response) => {
         const email = req.body.email;
         const password = req.body.password;
 
+        const encryptedPassword = bcrypt.hashSync(password, 10);
+
         const newUser = await User.create({
             username: username,
             email: email,
-            password: password
-        }).save()
+            password: encryptedPassword
+        }).save();
 
         return res.json({
             success: true,
             message: "User created succesfully",
             token: newUser
-        })
+        });
         // res.send(`<img src="https://http.cat/images/200.jpg">`)
 
     } catch (error) {
@@ -51,6 +55,15 @@ const login = async (req: Request, res: Response) => {
                 }
             )
         }
+
+        if (!bcrypt.compareSync(password, user.password)) {
+            return res.status(400).json(
+              {
+                success: true,
+                message: 'User or password incorrect',
+              }
+            )
+          }
 
         return res.json(
             {
