@@ -1,5 +1,6 @@
 import { Response, Request } from "express";
-import  jwt  from "jsonwebtoken";
+import 'dotenv/config'
+import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { User } from "../models/User";
 
@@ -58,18 +59,30 @@ const login = async (req: Request, res: Response) => {
 
         if (!bcrypt.compareSync(password, user.password)) {
             return res.status(400).json(
-              {
-                success: true,
-                message: 'User or password incorrect',
-              }
+                {
+                    success: true,
+                    message: 'User or password incorrect',
+                }
             )
-          }
+        }
+
+        const token = jwt.sign(
+            {
+                id: user.id,
+                role: user.role,
+                email: user.email
+            },
+            process.env.JWT_SECRET as string,
+            {
+                expiresIn: "3h",
+            }
+        );
 
         return res.json(
             {
                 success: true,
                 message: "User logged succesfully",
-                // token: token
+                token: token
             }
         )
 
@@ -86,11 +99,11 @@ const login = async (req: Request, res: Response) => {
 
 const profile = async (req: Request, res: Response) => {
     try {
-        const username = req.body.username;
+        // const username = req.body.username;
 
         const user = await User.findOneBy(
             {
-                username
+                id: req.token.id
             }
         )
         return res.json(
@@ -116,25 +129,22 @@ const updateProfile = async (req: Request, res: Response) => {
         const email = req.body.email;
         const password = req.body.password;
 
-        const userId = req.params.id;
-
-
-        const updateUser = await User.update(
+        const userIdToUpdate = req.params.id;
+        const userUpdated = await User.update(
             {
-                id: parseInt(userId)
+                id: parseInt(userIdToUpdate)
             },
             {
                 username,
                 email,
                 password
-            }
-        )
+            });
 
-        return res.json({
-            success: true,
-            message: "task updated",
-            data: updateUser
-        })
+        if (userUpdated.affected) {
+            return res.json(`Se ha actualizado correctamente el user con id ${userIdToUpdate}`);
+        }
+        return res.json(`No se ha actualizado nada`);
+
 
     } catch (error) {
         return res.status(500).json(

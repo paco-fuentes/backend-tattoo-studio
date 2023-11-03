@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { register, login, profile, updateProfile } from "../controllers/userController";
+import { auth } from "../middleware/auth";
 
 
 const router = Router();
@@ -7,7 +8,7 @@ const router = Router();
 router.post('/register', register);
 router.post('/login', login)
 
-router.get('/profile', profile)
-router.get('/profile', updateProfile)
+router.get('/profile', auth, profile)
+router.put('/:id', auth, updateProfile)
 
 export { router };
