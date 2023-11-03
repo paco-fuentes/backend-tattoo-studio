@@ -107,6 +107,7 @@ const profile = async (req: Request, res: Response) => {
                 success: true,
                 message: "profile user retrieved",
                 data: user
+                // data: user?.email
             });
     } catch (error) {
         return res.status(500).json(
@@ -166,6 +167,41 @@ const updateProfile = async (req: Request, res: Response) => {
     }
 }
 
+
+
+// const updateProfile = async (req: Request, res: Response) => {
+//     try {
+//         const username = req.body.username;
+//         const email = req.body.email;
+//         const password = req.body.password;
+
+//         const userIdToUpdate = req.token.id;
+//         const userUpdated = await User.update(
+//             {
+//                 id: userIdToUpdate
+//             },
+//             {
+//                 username,
+//                 email,
+//                 password
+//             });
+
+//         if (userUpdated.affected) {
+//             return res.json(`Se ha actualizado correctamente el user con id ${userIdToUpdate}`);
+//         }
+//         return res.json(`No se ha actualizado nada`);
+
+
+//     } catch (error) {
+//         return res.status(500).json(
+//             {
+//                 success: false,
+//                 message: "user can't update profile",
+//                 error: error
+//             }
+//         )
+//     }
+// }
 
 
 
