@@ -9,6 +9,6 @@ router.post('/register', register);
 router.post('/login', login)
 
 router.get('/profile', auth, profile)
-router.put('/:id', auth, updateProfile)
+router.put('/profile', auth, updateProfile)
 
 export { router };

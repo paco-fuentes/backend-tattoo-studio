@@ -23,7 +23,6 @@ const register = async (req: Request, res: Response) => {
             message: "User created succesfully",
             token: newUser
         });
-        // res.send(`<img src="https://http.cat/images/200.jpg">`)
 
     } catch (error) {
         return res.status(500).json(
@@ -31,7 +30,6 @@ const register = async (req: Request, res: Response) => {
                 success: false,
                 message: "user can't be created",
                 error: error,
-                // url: `<img src="https://http.cat/images/500.jpg">`
             }
         )
     }
@@ -52,7 +50,7 @@ const login = async (req: Request, res: Response) => {
             return res.status(400).json(
                 {
                     success: true,
-                    message: 'User or password incorrect',
+                    message: 'User incorrect',
                 }
             )
         }
@@ -61,7 +59,7 @@ const login = async (req: Request, res: Response) => {
             return res.status(400).json(
                 {
                     success: true,
-                    message: 'User or password incorrect',
+                    message: 'Password incorrect',
                 }
             )
         }
@@ -99,8 +97,6 @@ const login = async (req: Request, res: Response) => {
 
 const profile = async (req: Request, res: Response) => {
     try {
-        // const username = req.body.username;
-
         const user = await User.findOneBy(
             {
                 id: req.token.id
@@ -129,32 +125,48 @@ const updateProfile = async (req: Request, res: Response) => {
         const email = req.body.email;
         const password = req.body.password;
 
-        const userIdToUpdate = req.params.id;
-        const userUpdated = await User.update(
-            {
-                id: parseInt(userIdToUpdate)
-            },
-            {
-                username,
-                email,
-                password
-            });
+        // const userIdToUpdate = req.token.id;
+        const user = await User.findOneBy({id: req.token.id});
 
-        if (userUpdated.affected) {
-            return res.json(`Se ha actualizado correctamente el user con id ${userIdToUpdate}`);
-        }
-        return res.json(`No se ha actualizado nada`);
-
-
-    } catch (error) {
-        return res.status(500).json(
-            {
+        if (!user) {
+            return res.status(404).json({
                 success: false,
-                message: "user can't update profile",
-                error: error
-            }
-        )
+                message: "User not found",
+            });
+        }
+
+        // Actualiza solo los campos que se proporcionan en la solicitud
+        if (username) {
+            user.username = username;
+        }
+
+        if (email) {
+            user.email = email;
+        }
+
+        if (password) {
+            // Si se proporciona una nueva contraseña, hashea la contraseña antes de actualizarla
+            const encryptedPassword = bcrypt.hashSync(password, 10);
+            user.password = encryptedPassword;
+        }
+
+        const updatedUser = await user.save();
+
+        return res.json({
+            success: true,
+            message: "User profile updated successfully",
+            data: updatedUser,
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "User profile update failed",
+            error: error,
+        });
     }
 }
+
+
+
 
 export { register, login, profile, updateProfile }

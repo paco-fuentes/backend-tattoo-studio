@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 3000;
 
 
 app.get('/helloworld', (req: Request, res: Response) => {
-  res.send(`<h1 style="color:cyan">Hello</h1> <h1 style="color:yellow"> World!</h1>
+  res.send(`<h1 style="color:cyan">Hello World!</h1>
           <img src="https://http.cat/images/200.jpg">`)
 });
 
