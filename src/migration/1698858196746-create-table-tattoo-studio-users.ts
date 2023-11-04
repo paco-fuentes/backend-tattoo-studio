@@ -15,9 +15,16 @@ export class CreateTableTattooStudioUsers1698858196746 implements MigrationInter
                         generationStrategy: "increment",
                     },
                     {
-                        name: "username",
+                        name: "firstname",
                         type: "varchar",
-                        length: "50"
+                        length: "50",
+                        isNullable: true,
+                    },
+                    {
+                        name: "lastname",
+                        type: "varchar",
+                        length: "50",
+                        isNullable: true,
                     },
                     {
                         name: "email",
@@ -31,14 +38,26 @@ export class CreateTableTattooStudioUsers1698858196746 implements MigrationInter
                         length: "255"
                     },
                     {
+                        name: "phone",
+                        type: "int",
+                        length: "20",
+                        isNullable: true,
+                        isUnique: true
+                    },
+                    {
+                        name: "adress",
+                        type: "varchar",
+                        length: "255",
+                        isNullable: true
+                    },
+                    {
                         name: "is_active",
                         type: "boolean",
                         default: true
                     },
                     {
                         name: "role",
-                        type: "enum",
-                        enum: ["user", "worker", "admin", "super_admin"],
+                        type: "varchar",
                         default: '"user"'
                     },
                     {

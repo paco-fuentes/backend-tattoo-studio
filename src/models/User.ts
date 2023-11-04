@@ -2,18 +2,27 @@ import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity("users")
 export class User extends BaseEntity {
-    
+
     @PrimaryGeneratedColumn()
     id!: number
 
     @Column()
-    username!: string
+    firstname!: string
+
+    @Column()
+    lastname!: string
 
     @Column()
     email!: string
 
     @Column()
     password!: string
+
+    @Column()
+    phone!: number
+
+    @Column()
+    adress!: string
 
     @Column()
     is_active!: boolean
@@ -23,7 +32,6 @@ export class User extends BaseEntity {
 
     @Column()
     created_at!: Date
-
 
     @Column()
     updated_at!: Date

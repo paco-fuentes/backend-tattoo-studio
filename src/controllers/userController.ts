@@ -6,16 +6,22 @@ import { User } from "../models/User";
 
 const register = async (req: Request, res: Response) => {
     try {
-        const username = req.body.username;
+        const firstname = req.body.firstname;
+        const lastname = req.body.lastname;
         const email = req.body.email;
         const password = req.body.password;
+        const phone = req.body.phone;
+        const adress = req.body.adress;
 
         const encryptedPassword = bcrypt.hashSync(password, 10);
 
         const newUser = await User.create({
-            username: username,
+            firstname: firstname,
+            lastname: lastname,
             email: email,
-            password: encryptedPassword
+            password: encryptedPassword,
+            phone: phone,
+            adress: adress
         }).save();
 
         return res.json({
@@ -122,12 +128,15 @@ const profile = async (req: Request, res: Response) => {
 
 const updateProfile = async (req: Request, res: Response) => {
     try {
-        const username = req.body.username;
+        const firstname = req.body.firstname;
+        const lastname = req.body.lastname;
         const email = req.body.email;
         const password = req.body.password;
+        const phone = req.body.phone;
+        const adress = req.body.adress;
 
         // const userIdToUpdate = req.token.id;
-        const user = await User.findOneBy({id: req.token.id});
+        const user = await User.findOneBy({ id: req.token.id });
 
         if (!user) {
             return res.status(404).json({
@@ -136,19 +145,26 @@ const updateProfile = async (req: Request, res: Response) => {
             });
         }
 
-        // Actualiza solo los campos que se proporcionan en la solicitud
-        if (username) {
-            user.username = username;
+        // Actualiza solo los campos que se proporcionados
+        if (firstname) {
+            user.firstname = firstname;
         }
-
+        if (lastname) {
+            user.lastname = lastname;
+        }
         if (email) {
             user.email = email;
         }
-
         if (password) {
-            // Si se proporciona una nueva contraseña, hashea la contraseña antes de actualizarla
+            // Hashea la contraseña antes de actualizarla
             const encryptedPassword = bcrypt.hashSync(password, 10);
             user.password = encryptedPassword;
+        }
+        if (phone) {
+            user.phone = phone;
+        }
+        if (adress) {
+            user.adress = adress;
         }
 
         const updatedUser = await user.save();
@@ -171,7 +187,7 @@ const updateProfile = async (req: Request, res: Response) => {
 
 // const updateProfile = async (req: Request, res: Response) => {
 //     try {
-//         const username = req.body.username;
+//         const firstname = req.body.firstname;
 //         const email = req.body.email;
 //         const password = req.body.password;
 
@@ -181,7 +197,7 @@ const updateProfile = async (req: Request, res: Response) => {
 //                 id: userIdToUpdate
 //             },
 //             {
-//                 username,
+//                 firstname,
 //                 email,
 //                 password
 //             });
