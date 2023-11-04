@@ -21,7 +21,7 @@ export class Appointment extends BaseEntity{
     observations!: string
 
     @Column()
-    date!: Date
+    date!: string
     
     @Column()
     appointment_time!: string

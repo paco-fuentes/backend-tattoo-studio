@@ -1,4 +1,4 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, Timestamp, OneToMany, ManyToOne, JoinColumn } from "typeorm"
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn } from "typeorm"
 import { Appointment } from "./Appointment"
 import { Staff } from "./Staff"
 
@@ -26,10 +26,10 @@ export class Product extends BaseEntity {
     price!: number
 
     @Column()
-    created_at!: Timestamp
+    created_at!: Date
 
     @Column()
-    updated_at!: Timestamp
+    updated_at!: Date
 
     @ManyToOne(() => Staff, (staff) => staff.products)
     @JoinColumn({ name: 'tattoo_artist_id' })
