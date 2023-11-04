@@ -3,6 +3,49 @@ import 'dotenv/config'
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { User } from "../models/User";
+import { Appointment } from "../models/Appointment";
+
+const createAppointment = async (req: Request, res: Response) => {
+    try {
+        //recuperar la info
+        const user_id = req.body.user_id;
+        const tattoo_artist_id = req.body.tattoo_artist_id;
+        const tattoo_id = req.body.tattoo_id;
+        const observations = req.body.observations;
+        const date = req.body.date;
+        const appointment_time = req.body.appointment_time;
+
+        //validar si hace falta la info
+        //tratar si hace falta la info
+
+        const task = await Appointment.create(
+            {
+                user_id,
+                tattoo_artist_id,
+                tattoo_id,
+                observations,
+                date,
+                appointment_time
+            }
+        ).save()
+
+        return res.json(
+            {
+                success: true,
+                message: "users retrieved",
+                data: task
+            }
+        )
+    } catch (error) {
+        return res.status(500).json(
+            {
+                success: false,
+                message: "appointment can't be created",
+                error: error,
+            }
+        )
+    }
+}
 
 const register = async (req: Request, res: Response) => {
     try {
@@ -221,4 +264,4 @@ const updateProfile = async (req: Request, res: Response) => {
 
 
 
-export { register, login, profile, updateProfile }
+export { register, login, profile, updateProfile, createAppointment }
