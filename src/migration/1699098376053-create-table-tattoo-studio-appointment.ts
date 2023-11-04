@@ -37,7 +37,7 @@ export class CreateTableTattooStudioAppointment1699098376053 implements Migratio
                         type: "date"
                     },
                     {
-                        name: "appintment-time",
+                        name: "appointment_time",
                         type: "enum",
                         enum: ["morning", "afternoon"],
                         default: '"morning"'

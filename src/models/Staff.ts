@@ -1,7 +1,10 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm"
+import { Appointment } from "./Appointment"
+import { Product } from "./Product"
 
-@Entity()
+@Entity("staff")
 export class Staff extends BaseEntity {
+
     @PrimaryGeneratedColumn()
     id!: number
 
@@ -34,4 +37,10 @@ export class Staff extends BaseEntity {
 
     @Column()
     updated_at!: Date
+
+    @OneToMany(() => Product, (product) => product.tattooArtist)
+    products!: Product[];
+
+    @OneToMany(() => Appointment, (appointment) => appointment.tattooArtist)
+    appointments!: Appointment[];
 }

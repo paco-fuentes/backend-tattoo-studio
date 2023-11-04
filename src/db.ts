@@ -6,7 +6,9 @@ import { User } from "./models/User"
 import { CreateTableTattooStudioStaff1699093601736 } from "./migration/1699093601736-create-table-tattoo-studio-staff"
 import { Staff } from "./models/Staff"
 import { CreateTableTattooStudioProducts1699098448825 } from "./migration/1699098448825-create-table-tattoo-studio-products"
+import { Product } from "./models/Product"
 import { CreateTableTattooStudioAppointment1699098376053 } from "./migration/1699098376053-create-table-tattoo-studio-appointment"
+import { Appointment } from "./models/Appointment"
 
 export const AppDataSource = new DataSource({
     type: "mysql",
@@ -15,7 +17,7 @@ export const AppDataSource = new DataSource({
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    entities: [User, Staff],
+    entities: [User, Staff, Product, Appointment],
     migrations: [
         CreateTableTattooStudioUsers1698858196746,
         CreateTableTattooStudioStaff1699093601736,
