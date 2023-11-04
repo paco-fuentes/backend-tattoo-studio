@@ -7,6 +7,7 @@ import 'dotenv/config'
 
 // routes
 import { router as routerUser } from "./routes/userRoutes"
+import { router as routerStaff } from "./routes/staffRoutes"
 
 // import object from db.ts
 import { AppDataSource } from "./db";
@@ -25,6 +26,7 @@ app.get('/helloworld', (req: Request, res: Response) => {
 });
 
 app.use('/user', routerUser)
+app.use('/staff', routerStaff)
 
 AppDataSource.initialize()
   .then(() => {
