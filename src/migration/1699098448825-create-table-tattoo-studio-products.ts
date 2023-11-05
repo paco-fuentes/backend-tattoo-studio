@@ -28,11 +28,13 @@ export class CreateTableTattooStudioProducts1699098448825 implements MigrationIn
                         name: "title",
                         type: "varchar",
                         length: "50",
+                        isUnique: true
                     },
                     {
                         name: "description",
                         type: "varchar",
                         length: "255",
+                        isUnique: true
                     },
                     {
                         name: "time_amount",

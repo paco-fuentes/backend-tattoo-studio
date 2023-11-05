@@ -314,7 +314,7 @@ const getAllMyAppointments = async (req: Request, res: Response) => {
 
         const allmyappointmentes = await Appointment.find({
             where: {
-                user_id: req.body.user_id
+                user_id: req.token.id
             }
         })
 
@@ -375,7 +375,50 @@ const getSingleAppointment = async (req: Request, res: Response) => {
 };
 
 const updateAppointment = async (req: Request, res: Response) => {
-    
+    try {
+        const appointmentIdToUpdate = req.params.id; // Obtén el ID de la cita a actualizar desde los parámetros de la URL
+
+        // Busca la cita en la base de datos
+        const appointment = await Appointment.findOne({
+            where: {
+                id: parseInt(appointmentIdToUpdate),
+                user_id: req.token.id, // Asegúrate de que el usuario que intenta actualizar sea el propietario de la cita
+            },
+        });
+
+        if (!appointment) {
+            return res.status(404).json({
+                success: false,
+                message: "Appointment not found",
+            });
+        }
+
+        // Actualiza las propiedades de la cita con los valores proporcionados en el cuerpo de la solicitud
+        if (req.body.observations) {
+            appointment.observations = req.body.observations;
+        }
+        if (req.body.date) {
+            appointment.date = req.body.date;
+        }
+        if (req.body.appointment_time) {
+            appointment.appointment_time = req.body.appointment_time;
+        }
+
+        // Guarda la cita actualizada en la base de datos
+        const updatedAppointment = await appointment.save();
+
+        return res.json({
+            success: true,
+            message: "Appointment updated successfully",
+            data: updatedAppointment,
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Appointment update failed",
+            error: error,
+        });
+    }
 }
 
 const deleteAppointment = async (req: Request, res: Response) => {

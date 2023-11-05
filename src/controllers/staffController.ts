@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { Staff } from "../models/Staff";
 import { Product } from "../models/Product";
+import { Appointment } from "../models/Appointment";
 
 const registerStaff = async (req: Request, res: Response) => {
     try {
@@ -101,6 +102,33 @@ const loginStaff = async (req: Request, res: Response) => {
     }
 }
 
+const getAllMyAppointments = async (req: Request, res: Response) => {
+    try {
+
+        const allmyappointmentes = await Appointment.find({
+            where: {
+                tattoo_artist_id: req.token.id
+            }
+        })
+
+        return res.json(
+            {
+                success: true,
+                message: "profile user retrieved",
+                data: allmyappointmentes
+                // data: user?.email
+            });
+    } catch (error) {
+        return res.status(500).json(
+            {
+                success: false,
+                message: "user can't get profile",
+                error: error
+            }
+        )
+    }
+}
+
 const registerWork = async (req: Request, res: Response) => {
     try {
         const tattooArtistId = req.token.id
@@ -136,4 +164,4 @@ const registerWork = async (req: Request, res: Response) => {
     }
 }
 
-export { registerStaff, loginStaff, registerWork }
+export { registerStaff, loginStaff, registerWork, getAllMyAppointments }
