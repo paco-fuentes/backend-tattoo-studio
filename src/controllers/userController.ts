@@ -5,7 +5,8 @@ import bcrypt from "bcrypt";
 import { User } from "../models/User";
 import { Appointment } from "../models/Appointment";
 import { Product } from "../models/Product";
-import { Staff } from "../models/Staff";
+const dayjs = require("dayjs");
+
 
 const register = async (req: Request, res: Response) => {
     try {
@@ -215,6 +216,52 @@ const createAppointment = async (req: Request, res: Response) => {
 
         const tattoo_artist_id = currentTattoo.tattoo_artist_id;
 
+        const appointmentDate = date;
+        const appointmentDateFormat = dayjs(appointmentDate).format('DD-MM-YYYY')
+        const appointmentDay = dayjs(appointmentDateFormat).format('DD')
+        const appointmentMonth = dayjs(appointmentDateFormat).format('MM')
+        const appointmentYear = dayjs(appointmentDateFormat).format('YYYY')
+        const today = new Date();
+        const dateToday = dayjs(today).format('DD-MM-YYYY')
+        const day = dayjs(today).format('DD')
+        const month = dayjs(today).format('MM')
+        const year = dayjs(today).format('YYYY')
+
+        console.log(date, day, month, year, appointmentDay, appointmentMonth, appointmentYear);
+
+        if ((appointmentMonth < month || appointmentYear < year) || (appointmentMonth <= month && appointmentDay < day)) {
+                return res.status(400).json(
+                    {
+                        success: true,
+                        message: 'Time travel not allowed at this time',
+                    }
+                )
+        }
+
+
+
+        const weekDayFormat = dayjs(appointmentDate).format('DD-MM-YYYY') // display
+        const weekDay = dayjs(weekDayFormat).format('dddd') // display
+
+
+        if (appointmentDate === dateToday) {
+            return res.status(400).json(
+                {
+                    success: true,
+                    message: 'Appointments only avaible from next day',
+                }
+            )
+        }
+
+        if (weekDay === "Saturday" || weekDay === "Sunday") {
+            return res.status(400).json(
+                {
+                    success: true,
+                    message: 'Appointments not avaible on weekend',
+                }
+            )
+        }
+
         // Verificar si ya existe una cita para el mismo tattoo_artist_id, fecha y hora
         const existingAppointment = await Appointment.findOne({
             where: {
@@ -293,7 +340,7 @@ const getSingleAppointment = async (req: Request, res: Response) => {
     try {
         // Recuperar el ID del usuario desde el token
         const user_id = req.token.id;
-        
+
         // Recuperar el ID de la cita específica que deseas obtener
         const appointment_id = req.params.id; // Asumiendo que el ID de la cita se pasa como parámetro en la URL
 
@@ -326,6 +373,7 @@ const getSingleAppointment = async (req: Request, res: Response) => {
         });
     }
 };
+
 
 
 
