@@ -227,7 +227,7 @@ const createAppointment = async (req: Request, res: Response) => {
         const month = dayjs(today).format('MM')
         const year = dayjs(today).format('YYYY')
 
-        console.log(date, day, month, year, appointmentDay, appointmentMonth, appointmentYear);
+        console.log(today, dateToday, day, month, year, appointmentDay, appointmentMonth, appointmentYear);
 
         if ((appointmentMonth < month || appointmentYear < year) || (appointmentMonth <= month && appointmentDay < day)) {
                 return res.status(400).json(
@@ -374,7 +374,35 @@ const getSingleAppointment = async (req: Request, res: Response) => {
     }
 };
 
+const updateAppointment = async (req: Request, res: Response) => {
+    
+}
+
+const deleteAppointment = async (req: Request, res: Response) => {
+
+    try {
+        const appointmentIdToDelete = req.params.id;
+        const appointmentDeleted = await Appointment.delete(
+            {
+                id: parseInt(appointmentIdToDelete)
+            }
+        );
+
+        if (appointmentDeleted.affected) {
+            return res.json(`The appointment with ID:${appointmentIdToDelete} has been successfully deleted.`);
+        }
+        return res.json(`Nothing to to delete here`);
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Error while deleting appointment",
+            error: error,
+        });
+    }
+
+}
 
 
 
-export { register, login, profile, updateProfile, createAppointment, getAllMyAppointments, getSingleAppointment }
+
+export { register, login, profile, updateProfile, createAppointment, getAllMyAppointments, getSingleAppointment, deleteAppointment, updateAppointment }
