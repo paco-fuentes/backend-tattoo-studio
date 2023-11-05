@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 import { User } from "../models/User";
 import { Appointment } from "../models/Appointment";
 import { Product } from "../models/Product";
+import { Staff } from "../models/Staff";
 const dayjs = require("dayjs");
 
 
@@ -445,7 +446,29 @@ const deleteAppointment = async (req: Request, res: Response) => {
 
 }
 
+const getAllTattooArtist = async (req: Request, res: Response) => {
+    try {
+        const allTattoArtist = await Staff.find({
+                where: {
+                    id: req.body.tattoo_artist_id
+                }
+            })
+    
+            return res.json(
+                {
+                    success: true,
+                    message: "profile user retrieved",
+                    data: allTattoArtist
+                    // data: user?.email
+                });
+    
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Error searching all tattoo artist",
+            error: error,
+        });
+    }
 
-
-
-export { register, login, profile, updateProfile, createAppointment, getAllMyAppointments, getSingleAppointment, deleteAppointment, updateAppointment }
+} 
+export { register, login, profile, updateProfile, createAppointment, getAllMyAppointments, getSingleAppointment, deleteAppointment, updateAppointment, getAllTattooArtist }
