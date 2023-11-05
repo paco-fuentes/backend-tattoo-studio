@@ -8,6 +8,7 @@ const router = Router();
 
 router.post('/register', register);
 router.post('/login', login)
+
 router.get('/getAllTattooArtist', getAllTattooArtist)
 
 router.get('/profile', auth, isUser, profile)

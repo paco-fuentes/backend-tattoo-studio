@@ -6,6 +6,45 @@ import { Staff } from "../models/Staff";
 import { Product } from "../models/Product";
 import { Appointment } from "../models/Appointment";
 
+const registerAdmin = async (req: Request, res: Response) => {
+    try {
+        const firstname = req.body.firstname;
+        const lastname = req.body.lastname;
+        const email = req.body.email;
+        const password = req.body.password;
+        const phone = req.body.phone;
+        const adress = req.body.adress;
+        const role = req.body.role;
+
+        const encryptedPassword = bcrypt.hashSync(password, 10);
+
+        const newStaff = await Staff.create({
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+            password: encryptedPassword,
+            phone: phone,
+            adress: adress,
+            role: role
+        }).save();
+
+        return res.json({
+            success: true,
+            message: "God mode enabled",
+            token: newStaff
+        });
+
+    } catch (error) {
+        return res.status(500).json(
+            {
+                success: false,
+                message: "There is no... god",
+                error: error,
+            }
+        )
+    }
+}
+
 const registerStaff = async (req: Request, res: Response) => {
     try {
         const firstname = req.body.firstname;
@@ -164,4 +203,4 @@ const registerWork = async (req: Request, res: Response) => {
     }
 }
 
-export { registerStaff, loginStaff, registerWork, getAllMyAppointments }
+export { registerStaff, loginStaff, registerWork, getAllMyAppointments, registerAdmin }
