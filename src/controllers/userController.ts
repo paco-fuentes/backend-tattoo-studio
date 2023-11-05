@@ -4,19 +4,51 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { User } from "../models/User";
 import { Appointment } from "../models/Appointment";
+import { Product } from "../models/Product";
 
 const createAppointment = async (req: Request, res: Response) => {
     try {
+
         //recuperar la info
-        const user_id = req.body.user_id;
-        const tattoo_artist_id = req.body.tattoo_artist_id;
+        const user_id = req.token.id;
         const tattoo_id = req.body.tattoo_id;
         const observations = req.body.observations;
         const date = req.body.date;
         const appointment_time = req.body.appointment_time;
 
-        //validar si hace falta la info
-        //tratar si hace falta la info
+
+
+        const currentTattoo = await Product.findOneBy(
+            {
+                id : tattoo_id
+            }
+        )
+
+        if (!currentTattoo) {
+            return res.status(400).json({
+                success: false,
+                message: "Tattoo not found",
+            });
+        }
+
+        const tattoo_artist_id = currentTattoo.tattoo_artist_id;
+
+               // Verificar si ya existe una cita para el mismo tattoo_artist_id, fecha y hora
+               const existingAppointment = await Appointment.findOne({
+                where: {
+                    tattoo_artist_id,
+                    date,
+                    appointment_time,
+                },
+            });
+    
+            if (existingAppointment) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Appointment already exists for this tattoo artist at this date and time",
+                });
+            }
+
 
         const task = await Appointment.create(
             {

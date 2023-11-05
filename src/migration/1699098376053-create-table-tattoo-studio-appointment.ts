@@ -35,8 +35,7 @@ export class CreateTableTattooStudioAppointment1699098376053 implements Migratio
                     {
                         name: "date",
                         type: "varchar",
-                        length: "10",
-                        isNullable: true
+                        length: "12",
                     },
                     {
                         name: "appointment_time",
