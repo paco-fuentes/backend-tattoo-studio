@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 import { User } from "../models/User";
 import { Appointment } from "../models/Appointment";
 import { Product } from "../models/Product";
+import { Staff } from "../models/Staff";
 
 const register = async (req: Request, res: Response) => {
     try {
@@ -288,6 +289,44 @@ const getAllMyAppointments = async (req: Request, res: Response) => {
     }
 }
 
+const getSingleAppointment = async (req: Request, res: Response) => {
+    try {
+        // Recuperar el ID del usuario desde el token
+        const user_id = req.token.id;
+        
+        // Recuperar el ID de la cita específica que deseas obtener
+        const appointment_id = req.params.id; // Asumiendo que el ID de la cita se pasa como parámetro en la URL
+
+        // Realizar una consulta para obtener la cita y sus propiedades relacionadas
+        const appointment = await Appointment.findOne({
+            where: {
+                id: parseInt(appointment_id as string),
+                user_id: user_id,
+            },
+            relations: ["tattoo", "tattooArtist"], // Se hace referencia al modelo
+        });
+
+        if (!appointment) {
+            return res.status(404).json({
+                success: false,
+                message: "Appointment not found",
+            });
+        }
+
+        return res.json({
+            success: true,
+            message: "Appointment retrieved",
+            data: appointment,
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Error while retrieving appointment",
+            error: error,
+        });
+    }
+};
 
 
-export { register, login, profile, updateProfile, createAppointment, getAllMyAppointments }
+
+export { register, login, profile, updateProfile, createAppointment, getAllMyAppointments, getSingleAppointment }
