@@ -6,79 +6,6 @@ import { User } from "../models/User";
 import { Appointment } from "../models/Appointment";
 import { Product } from "../models/Product";
 
-const createAppointment = async (req: Request, res: Response) => {
-    try {
-
-        //recuperar la info
-        const user_id = req.token.id;
-        const tattoo_id = req.body.tattoo_id;
-        const observations = req.body.observations;
-        const date = req.body.date;
-        const appointment_time = req.body.appointment_time;
-
-
-
-        const currentTattoo = await Product.findOneBy(
-            {
-                id : tattoo_id
-            }
-        )
-
-        if (!currentTattoo) {
-            return res.status(400).json({
-                success: false,
-                message: "Tattoo not found",
-            });
-        }
-
-        const tattoo_artist_id = currentTattoo.tattoo_artist_id;
-
-               // Verificar si ya existe una cita para el mismo tattoo_artist_id, fecha y hora
-               const existingAppointment = await Appointment.findOne({
-                where: {
-                    tattoo_artist_id,
-                    date,
-                    appointment_time,
-                },
-            });
-    
-            if (existingAppointment) {
-                return res.status(400).json({
-                    success: false,
-                    message: "Appointment already exists for this tattoo artist at this date and time",
-                });
-            }
-
-
-        const task = await Appointment.create(
-            {
-                user_id,
-                tattoo_artist_id,
-                tattoo_id,
-                observations,
-                date,
-                appointment_time
-            }
-        ).save()
-
-        return res.json(
-            {
-                success: true,
-                message: "users retrieved",
-                data: task
-            }
-        )
-    } catch (error) {
-        return res.status(500).json(
-            {
-                success: false,
-                message: "appointment can't be created",
-                error: error,
-            }
-        )
-    }
-}
-
 const register = async (req: Request, res: Response) => {
     try {
         const firstname = req.body.firstname;
@@ -260,40 +187,107 @@ const updateProfile = async (req: Request, res: Response) => {
 
 
 
-// const updateProfile = async (req: Request, res: Response) => {
-//     try {
-//         const firstname = req.body.firstname;
-//         const email = req.body.email;
-//         const password = req.body.password;
+const createAppointment = async (req: Request, res: Response) => {
+    try {
 
-//         const userIdToUpdate = req.token.id;
-//         const userUpdated = await User.update(
-//             {
-//                 id: userIdToUpdate
-//             },
-//             {
-//                 firstname,
-//                 email,
-//                 password
-//             });
-
-//         if (userUpdated.affected) {
-//             return res.json(`Se ha actualizado correctamente el user con id ${userIdToUpdate}`);
-//         }
-//         return res.json(`No se ha actualizado nada`);
-
-
-//     } catch (error) {
-//         return res.status(500).json(
-//             {
-//                 success: false,
-//                 message: "user can't update profile",
-//                 error: error
-//             }
-//         )
-//     }
-// }
+        //recuperar la info
+        const user_id = req.token.id;
+        const tattoo_id = req.body.tattoo_id;
+        const observations = req.body.observations;
+        const date = req.body.date;
+        const appointment_time = req.body.appointment_time;
 
 
 
-export { register, login, profile, updateProfile, createAppointment }
+        const currentTattoo = await Product.findOneBy(
+            {
+                id: tattoo_id
+            }
+        )
+
+        if (!currentTattoo) {
+            return res.status(400).json({
+                success: false,
+                message: "Tattoo not found",
+            });
+        }
+
+        const tattoo_artist_id = currentTattoo.tattoo_artist_id;
+
+        // Verificar si ya existe una cita para el mismo tattoo_artist_id, fecha y hora
+        const existingAppointment = await Appointment.findOne({
+            where: {
+                tattoo_artist_id,
+                date,
+                appointment_time,
+            },
+        });
+
+        if (existingAppointment) {
+            return res.status(400).json({
+                success: false,
+                message: "Appointment already exists for this tattoo artist at this date and time",
+            });
+        }
+
+
+        const task = await Appointment.create(
+            {
+                user_id,
+                tattoo_artist_id,
+                tattoo_id,
+                observations,
+                date,
+                appointment_time
+            }
+        ).save()
+
+        return res.json(
+            {
+                success: true,
+                message: "users retrieved",
+                data: task
+            }
+        )
+    } catch (error) {
+        return res.status(500).json(
+            {
+                success: false,
+                message: "appointment can't be created",
+                error: error,
+            }
+        )
+    }
+}
+
+
+const getAllMyAppointments = async (req: Request, res: Response) => {
+    try {
+
+        const allmyappointmentes = await Appointment.find({
+            where: {
+                user_id: req.body.user_id
+            }
+        })
+
+        return res.json(
+            {
+                success: true,
+                message: "profile user retrieved",
+                data: allmyappointmentes
+                // data: user?.email
+            });
+    } catch (error) {
+        return res.status(500).json(
+            {
+                success: false,
+                message: "user can't get profile",
+                error: error
+            }
+        )
+    }
+}
+
+
+
+export { register, login, profile, updateProfile, createAppointment, getAllMyAppointments }

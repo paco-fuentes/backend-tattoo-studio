@@ -1,4 +1,11 @@
 # Welcome to my backend app
+## Tables relationship diagram
+
+---
+
+<img src="./img/table-relationship-diagram.png" align= "center"/>
+
+---
 
 <details>
   <summary>Contenido 📝</summary>
