@@ -112,7 +112,7 @@ const profile = async (req: Request, res: Response) => {
             {
                 id: req.token.id
             }
-        )
+        );
         return res.json(
             {
                 success: true,
@@ -127,7 +127,7 @@ const profile = async (req: Request, res: Response) => {
                 message: "user can't get profile",
                 error: error
             }
-        )
+        );
     }
 }
 
@@ -140,7 +140,6 @@ const updateProfile = async (req: Request, res: Response) => {
         const phone = req.body.phone;
         const adress = req.body.adress;
 
-        // const userIdToUpdate = req.token.id;
         const user = await User.findOneBy({ id: req.token.id });
 
         if (!user) {
@@ -150,7 +149,6 @@ const updateProfile = async (req: Request, res: Response) => {
             });
         }
 
-        // Actualiza solo los campos que se proporcionados
         if (firstname) {
             user.firstname = firstname;
         }
@@ -161,7 +159,6 @@ const updateProfile = async (req: Request, res: Response) => {
             user.email = email;
         }
         if (password) {
-            // Hashea la contraseña antes de actualizarla
             const encryptedPassword = bcrypt.hashSync(password, 10);
             user.password = encryptedPassword;
         }
@@ -188,19 +185,13 @@ const updateProfile = async (req: Request, res: Response) => {
     }
 }
 
-
-
 const createAppointment = async (req: Request, res: Response) => {
     try {
-
-        //recuperar la info
         const user_id = req.token.id;
         const tattoo_id = req.body.tattoo_id;
         const observations = req.body.observations;
         const date = req.body.date;
         const appointment_time = req.body.appointment_time;
-
-
 
         const currentTattoo = await Product.findOneBy(
             {
@@ -217,6 +208,12 @@ const createAppointment = async (req: Request, res: Response) => {
 
         const tattoo_artist_id = currentTattoo.tattoo_artist_id;
 
+        // La lógica funciona, no deja generar citas en el pasado, 
+        // el día de hoy y el fin de semana, pero no consigo solucionar 
+        // un bug en el que si el dia pasa de 12 (como un mes) me da error
+        // se puede comprobar con el log de abajo.
+        // Lo más probable es que sea un error en el formato pasado (req.query.date) 
+        // y el formato que espera recibir, creo que (YYYY-MM-DD)
         const appointmentDate = date;
         const appointmentDateFormat = dayjs(appointmentDate).format('DD-MM-YYYY')
         const appointmentDay = dayjs(appointmentDateFormat).format('DD')
@@ -228,22 +225,19 @@ const createAppointment = async (req: Request, res: Response) => {
         const month = dayjs(today).format('MM')
         const year = dayjs(today).format('YYYY')
 
-        console.log(today, dateToday, day, month, year, appointmentDay, appointmentMonth, appointmentYear);
+        // console.log(today, dateToday, day, month, year, appointmentDay, appointmentMonth, appointmentYear);
 
         if ((appointmentMonth < month || appointmentYear < year) || (appointmentMonth <= month && appointmentDay < day)) {
-                return res.status(400).json(
-                    {
-                        success: true,
-                        message: 'Time travel not allowed at this time',
-                    }
-                )
+            return res.status(400).json(
+                {
+                    success: true,
+                    message: 'Time travel not allowed at this time',
+                }
+            )
         }
-
-
 
         const weekDayFormat = dayjs(appointmentDate).format('DD-MM-YYYY') // display
         const weekDay = dayjs(weekDayFormat).format('dddd') // display
-
 
         if (appointmentDate === dateToday) {
             return res.status(400).json(
@@ -263,8 +257,7 @@ const createAppointment = async (req: Request, res: Response) => {
             )
         }
 
-        // Verificar si ya existe una cita para el mismo tattoo_artist_id, fecha y hora
-        const existingAppointment = await Appointment.findOne({
+        const existAppointment = await Appointment.findOne({
             where: {
                 tattoo_artist_id,
                 date,
@@ -272,13 +265,12 @@ const createAppointment = async (req: Request, res: Response) => {
             },
         });
 
-        if (existingAppointment) {
+        if (existAppointment) {
             return res.status(400).json({
                 success: false,
                 message: "Appointment already exists for this tattoo artist at this date and time",
             });
         }
-
 
         const task = await Appointment.create(
             {
@@ -309,7 +301,6 @@ const createAppointment = async (req: Request, res: Response) => {
     }
 }
 
-
 const getAllMyAppointments = async (req: Request, res: Response) => {
     try {
 
@@ -339,13 +330,9 @@ const getAllMyAppointments = async (req: Request, res: Response) => {
 
 const getSingleAppointment = async (req: Request, res: Response) => {
     try {
-        // Recuperar el ID del usuario desde el token
         const user_id = req.token.id;
+        const appointment_id = req.params.id;
 
-        // Recuperar el ID de la cita específica que deseas obtener
-        const appointment_id = req.params.id; // Asumiendo que el ID de la cita se pasa como parámetro en la URL
-
-        // Realizar una consulta para obtener la cita y sus propiedades relacionadas
         const appointment = await Appointment.findOne({
             where: {
                 id: parseInt(appointment_id as string),
@@ -377,13 +364,12 @@ const getSingleAppointment = async (req: Request, res: Response) => {
 
 const updateAppointment = async (req: Request, res: Response) => {
     try {
-        const appointmentIdToUpdate = req.params.id; // Obtén el ID de la cita a actualizar desde los parámetros de la URL
+        const appointmentIdToUpdate = req.params.id;
 
-        // Busca la cita en la base de datos
         const appointment = await Appointment.findOne({
             where: {
                 id: parseInt(appointmentIdToUpdate),
-                user_id: req.token.id, // Asegúrate de que el usuario que intenta actualizar sea el propietario de la cita
+                user_id: req.token.id,
             },
         });
 
@@ -394,7 +380,6 @@ const updateAppointment = async (req: Request, res: Response) => {
             });
         }
 
-        // Actualiza las propiedades de la cita con los valores proporcionados en el cuerpo de la solicitud
         if (req.body.observations) {
             appointment.observations = req.body.observations;
         }
@@ -405,7 +390,6 @@ const updateAppointment = async (req: Request, res: Response) => {
             appointment.appointment_time = req.body.appointment_time;
         }
 
-        // Guarda la cita actualizada en la base de datos
         const updatedAppointment = await appointment.save();
 
         return res.json({
@@ -449,19 +433,19 @@ const deleteAppointment = async (req: Request, res: Response) => {
 const getAllTattooArtist = async (req: Request, res: Response) => {
     try {
         const allTattoArtist = await Staff.find({
-                where: {
-                    id: req.body.tattoo_artist_id
-                }
-            })
-    
-            return res.json(
-                {
-                    success: true,
-                    message: "profile user retrieved",
-                    data: allTattoArtist
-                    // data: user?.email
-                });
-    
+            where: {
+                id: req.body.tattoo_artist_id
+            }
+        })
+
+        return res.json(
+            {
+                success: true,
+                message: "profile user retrieved",
+                data: allTattoArtist
+                // data: user?.email
+            });
+
     } catch (error) {
         return res.status(500).json({
             success: false,
@@ -470,5 +454,5 @@ const getAllTattooArtist = async (req: Request, res: Response) => {
         });
     }
 
-} 
+}
 export { register, login, profile, updateProfile, createAppointment, getAllMyAppointments, getSingleAppointment, deleteAppointment, updateAppointment, getAllTattooArtist }
