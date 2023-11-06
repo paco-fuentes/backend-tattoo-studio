@@ -455,4 +455,30 @@ const getAllTattooArtist = async (req: Request, res: Response) => {
     }
 
 }
-export { register, login, profile, updateProfile, createAppointment, getAllMyAppointments, getSingleAppointment, deleteAppointment, updateAppointment, getAllTattooArtist }
+
+const getAllTattoos = async (req: Request, res: Response) => {
+    try {
+        const allTattoos = await Product.find({
+            where: {
+                id: req.body.tattoo_id
+            }
+        })
+
+        return res.json(
+            {
+                success: true,
+                message: "profile user retrieved",
+                data: allTattoos
+                // data: user?.email
+            });
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Error searching all tattoos",
+            error: error,
+        });
+    }
+}
+
+export { register, login, profile, updateProfile, createAppointment, getAllMyAppointments, getSingleAppointment, deleteAppointment, updateAppointment, getAllTattooArtist, getAllTattoos }

@@ -87,6 +87,10 @@ Tecnologías utilizadas:
     
             GET http://localhost:4000/user/getalltattooartist
 
+    - GET ALL TATTOOS
+    
+            GET http://localhost:4000/user/alltattoos
+
 - ADMIN ENDPOINTS
 
     - REGISTER ADMIN

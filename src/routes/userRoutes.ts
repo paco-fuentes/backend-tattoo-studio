@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { register, login, profile, updateProfile, createAppointment, getAllMyAppointments, getSingleAppointment, deleteAppointment, updateAppointment, getAllTattooArtist } from "../controllers/userController";
+import { register, login, profile, updateProfile, createAppointment, getAllMyAppointments, getSingleAppointment, deleteAppointment, updateAppointment, getAllTattooArtist, getAllTattoos } from "../controllers/userController";
 import { auth } from "../middleware/auth";
 import { isUser } from "../middleware/isUser";
 
@@ -9,7 +9,8 @@ const router = Router();
 router.post('/register', register);
 router.post('/login', login)
 
-router.get('/getAllTattooArtist', getAllTattooArtist)
+router.get('/getalltattooartist', getAllTattooArtist)
+router.get('/alltattoos', getAllTattoos)
 
 router.get('/profile', auth, isUser, profile)
 router.put('/profile', auth, isUser, updateProfile)
