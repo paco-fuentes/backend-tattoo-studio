@@ -1,4 +1,4 @@
-# Backend for a Tattoo Studio Website
+# Backend for a Tattoo Studio
 
 <details>
   <summary>Content 📝</summary>
