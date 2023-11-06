@@ -79,7 +79,13 @@ Tecnologías utilizadas:
 
 - HELLO
 
-            GET http://localhost:4000/helloworld 
+            GET http://localhost:4000/helloworld
+
+- GUEST
+     
+    - GET ALL TATTOO ARTISTS
+    
+            GET http://localhost:4000/user/getalltattooartist
 
 - ADMIN ENDPOINTS
 
@@ -154,9 +160,7 @@ Tecnologías utilizadas:
     - GET ALL MY APPOINTMENTES AS TATTOO ARTIST
 
             GET http://localhost:4000/staff/myappointments
-        body:
-        ``` json
-        ```
+
         auth: role worker required
 
 - TATTOO ARTISTS ENDPOINTS
@@ -167,11 +171,10 @@ Tecnologías utilizadas:
         body:
         ``` json
             {
-                "email": "juan@manuel.com",
+                "email": "user@user.com",
                 "password": "12345"
             }
         ```
-        auth: 
 
     - LOGIN USER
 
@@ -179,11 +182,10 @@ Tecnologías utilizadas:
         body:
         ``` json
             {
-                "email": "juan@manuel.com",
+                "email": "user@user.com",
                 "password": "12345"
             }
         ```
-        auth: 
 
      - UPDATE USER
 
@@ -194,7 +196,7 @@ Tecnologías utilizadas:
                 "firstname": "Juan Manuel",
                 "lastname": "Perez García",
                 "email": "user@user.com",
-                "password": "12345",
+                "password": "54321",
                 "phone": "666333777",
                 "adress": "Calle del user, 12, 3, 46011, Valencia, España"
             }
@@ -245,14 +247,14 @@ Tecnologías utilizadas:
     auth: role user required
 
     - DELETE APPOINTMENT
-    
+
            DEL http://localhost:4000/user/myappointments/:id
 
     auth: role user required
 
 
 </details>
-</details>
+
 
 ## Futuras funcionalidades
 [ ] Añadir validaciones
