@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 import { Staff } from "../models/Staff";
 import { Product } from "../models/Product";
 import { Appointment } from "../models/Appointment";
+import { User } from "../models/User";
 
 const registerAdmin = async (req: Request, res: Response) => {
     try {
@@ -203,4 +204,53 @@ const registerWork = async (req: Request, res: Response) => {
     }
 }
 
-export { registerStaff, loginStaff, registerWork, getAllMyAppointments, registerAdmin }
+const deleteUserById = async (req: Request, res: Response) => {
+    try {
+        const userIdToDelete = req.params.id;
+        const userDeleted = await User.delete(
+            {
+                id: parseInt(userIdToDelete)
+            }
+        );
+
+        if (userDeleted.affected) {
+            return res.json(`The user with ID:${userIdToDelete} has been successfully deleted.`);
+        }
+        return res.json(`Nothing to to delete here`);
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Error while deleting user",
+            error: error,
+        });
+    }
+}
+
+const getAllUsers = async (req: Request, res: Response) => {
+    try {
+
+        const allUsers = await User.find({
+            where: {
+                id: req.body.user_id
+            }
+        })
+
+        return res.json(
+            {
+                success: true,
+                message: "profile user retrieved",
+                data: allUsers
+                // data: user?.email
+            });
+    } catch (error) {
+        return res.status(500).json(
+            {
+                success: false,
+                message: "user can't get profile",
+                error: error
+            }
+        )
+    }
+}
+
+export { registerStaff, loginStaff, registerWork, getAllMyAppointments, registerAdmin, deleteUserById, getAllUsers }

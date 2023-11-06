@@ -135,6 +135,18 @@ Tecnologías utilizadas:
         ```
         auth: role admin required
 
+    - GET ALL USERS
+
+            POST http://localhost:4000/staff/getallusers
+
+            auth: role admin required
+
+    - DELETE USER BY ID
+
+            POST http://localhost:4000/staff/deleteuser/111
+
+            auth: role admin required
+
 - TATTOO ARTISTS ENDPOINTS
 
     - LOGIN TATTOO ARTIST
