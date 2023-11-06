@@ -108,12 +108,6 @@ Tecnologías utilizadas:
                 "password": "12345"
             }
         ```
-- RUTINAS
-    - RECUPERAR RUTINAS  
-
-            GET http://localhost:3000/api/rutina
-
-    - ...
 </details>
 
 ## Futuras funcionalidades
