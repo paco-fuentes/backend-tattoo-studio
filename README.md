@@ -285,15 +285,15 @@ Create a fork of the repository
 2. Create a fork of the repository
     - Create a new branch
         ```
-        $ git checkout -b feature/nombreUsuario-mejora
+        $ git checkout -b feature/userName/newFeature
         ```
     - Commit your changes
         ```
-        $ git commit -m 'feat: mejora X cosa'
+        $ git commit -m 'feat: my new feature'
         ```
     - Push the branch
         ```
-        $ git push origin feature/nombreUsuario-mejora
+        $ git push origin feature/userName-feature
         ```
     - Open a Pull Request.
 
