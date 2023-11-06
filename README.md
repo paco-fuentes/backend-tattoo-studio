@@ -77,16 +77,17 @@ Tecnologías utilizadas:
 <details>
 <summary>Endpoints</summary>
 
-- AUTH
-    - HELLO
+- HELLO
 
             GET http://localhost:4000/helloworld 
 
-    - REGISTER
+- ADMIN ENDPOINTS
+
+    - REGISTER ADMIN
 
             POST http://localhost:4000/register/admin
         body:
-        ``` js
+        ``` json
             {
                 "firstname": "Juan Manuel",
                 "lastname": "Apellido Aburrido",
@@ -94,7 +95,7 @@ Tecnologías utilizadas:
                 "password": "12345",
                 "phone": "123456789",
                 "adress": "Calle del Admin, 12, 3, 46011, Valencia, España",
-                "role":"admin"
+                "role": "admin"
             }
         ```
 
@@ -102,12 +103,155 @@ Tecnologías utilizadas:
 
             POST http://localhost:4000/staff/login
         body:
-        ``` js
+        ``` json
             {
                 "email": "admin@admin.com",
                 "password": "12345"
             }
         ```
+    - REGISTER TATTOO ARTIST
+
+            POST http://localhost:4000/staff/register
+        body:
+        ``` json
+            {
+                "firstname": "Juan Manuel",
+                "lastname": "El Tuerto",
+                "email": "juan@manuel.com",
+                "password": "12345",
+                "phone": "99999999",
+                "adress": "Calle con número, n/a"
+            }
+        ```
+        auth: role admin required
+
+- TATTOO ARTISTS ENDPOINTS
+
+    - LOGIN TATTOO ARTIST
+
+            POST http://localhost:4000/staff/login
+        body:
+        ``` json
+            {
+                "email": "juan@manuel.com",
+                "password": "12345"
+            }
+        ```
+    - CREATE TATTOO
+
+            POST http://localhost:4000/staff/addwork
+        body:
+        ``` json
+            {
+                "product_type": "tattoo",
+                "title": "caravera",
+                "description": "tatuaje de calavera del tamaño de una cara",
+                "price": "99.99"
+            }
+        ```
+        auth: role worker required
+
+    - GET ALL MY APPOINTMENTES AS TATTOO ARTIST
+
+            GET http://localhost:4000/staff/myappointments
+        body:
+        ``` json
+        ```
+        auth: role worker required
+
+- TATTOO ARTISTS ENDPOINTS
+
+    - REGISTER USER
+
+            POST http://localhost:4000/user/register
+        body:
+        ``` json
+            {
+                "email": "juan@manuel.com",
+                "password": "12345"
+            }
+        ```
+        auth: 
+
+    - LOGIN USER
+
+            POST http://localhost:4000/user/login
+        body:
+        ``` json
+            {
+                "email": "juan@manuel.com",
+                "password": "12345"
+            }
+        ```
+        auth: 
+
+     - UPDATE USER
+
+            PUT http://localhost:4000/user/profile
+        body:
+        ``` json
+            {
+                "firstname": "Juan Manuel",
+                "lastname": "Perez García",
+                "email": "user@user.com",
+                "password": "12345",
+                "phone": "666333777",
+                "adress": "Calle del user, 12, 3, 46011, Valencia, España"
+            }
+        ```
+        auth: role user required
+
+    - GET USER PROFILE
+
+            GET http://localhost:4000/user/profile
+
+        auth: role user required
+
+    - CREATE APPOINTMENT
+
+            POST http://localhost:4000/user/appointment
+        body:
+        ``` json
+            {
+                "tattoo_id": "1",
+                "observations": "Lo quiero lo antes posible",
+                "date": "10-11-2023"
+            }
+        ```
+        auth: role user required
+
+    - GET ONE APPOINTMENT
+
+            GET http://localhost:4000/user/myappointments/:id
+
+        auth: role user required
+
+    - GET ALL MY APPOINTMENTS
+
+            GET http://localhost:4000/user/myappointments/
+        
+    auth: role user required
+
+    - UPDATE APPOINTMENT
+
+            PUT http://localhost:4000/user/myappointments/:id
+        body:
+        ``` json
+            {
+                "observations": "Lo siento pero tengo que cambiar la fecha",
+                "date": "12-11-2023"
+            }
+        ```
+    auth: role user required
+
+    - DELETE APPOINTMENT
+    
+           DEL http://localhost:4000/user/myappointments/:id
+
+    auth: role user required
+
+
+</details>
 </details>
 
 ## Futuras funcionalidades
