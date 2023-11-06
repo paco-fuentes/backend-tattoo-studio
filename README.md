@@ -1,38 +1,35 @@
 # Welcome to my backend app
 
 <details>
-  <summary>Contenido 📝</summary>
+  <summary>Content 📝</summary>
   <ol>
-    <li><a href="#objetivo">Objetivo</a></li>
-    <li><a href="#sobre-el-proyecto">Sobre el proyecto</a></li>
-    <li><a href="#deploy-🚀">Deploy</a></li>
+    <li><a href="#objective">Objective</a></li>
+    <li><a href="#about-the-project">About the Project</a></li>
+    <li><a href="#deployment-🚀">Deployment</a></li>
     <li><a href="#stack">Stack</a></li>
-    <li><a href="#diagrama-bd">Diagrama</a></li>
-    <li><a href="#instalación-en-local">Instalación</a></li>
+    <li><a href="#database-diagram">Database Diagram</a></li>
+    <li><a href="#local-installation">Installation</a></li>
     <li><a href="#endpoints">Endpoints</a></li>
-    <li><a href="#futuras-funcionalidades">Futuras funcionalidades</a></li>
-    <li><a href="#contribuciones">Contribuciones</a></li>
-    <li><a href="#licencia">Licencia</a></li>
-    <li><a href="#desarrollo">Desarrollo</a></li>
-    <li><a href="#agradecimientos">Agradecimientos</a></li>
-    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#future-features">Future Features</a></li>
+    <li><a href="#contributions">Contributions</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
 
-## Objetivo
-Este proyecto de backend requería una API funcional conectada a una base de datos con al menos una relación de uno a muchos y una relación de muchos a muchos mediante una tabla intermedia.
+## Objetive
+This backend project required a functional API connected to a database with at least a one-to-many and many-to-many relationship through an intermediate table.
 
-## Sobre el proyecto
-Applicacion de backend API REST para un sistema de gestion de trabajadores, usuarios y citas para un pequeño estudio de tatuaje.
-Un administrador puede gestionar con este recurso su negocio añadiendo tatuadores a su plantilla y gestionando todo el contenido online.  
+## About the Project
+Backend API application for a worker, user, and appointment management system for a small tattoo studio. An administrator can manage their business by adding tattoo artists to their staff and handling all online content.
 
 ## Deploy 🚀
 <div align="center">
-    <a href="https://www.google.com"><strong>Url a producción proximamente ... </strong></a>🚀🚀🚀
+    <a href="https://www.google.com"><strong>Url deployment coming soon... </strong></a>🚀🚀🚀
 </div>
 
 ## Stack
-Tecnologías utilizadas:
+Used stacks:
 <div align="center">
 <a href="https://www.mysql.com/">
     <img src= "https://img.shields.io/badge/mysql-3E6E93?style=for-the-badge&logo=mysql&logoColor=white"/>
@@ -55,19 +52,21 @@ Tecnologías utilizadas:
  </div>
 
 
-## Diagrama BD
+## Database Diagram
 <img src="./img/table-relationship-diagram.png" align= "center"/>
 
-## Instalación en local
-1. Clonar el repositorio y ejecutar el siguiente comando para instalar las dependencias necesarias:
-2. ` $ npm install `
-3. Conectamos nuestro repositorio con la base de datos siguiendo el archivo env.example, donde también se guarda la clave para el JWT.
-4. ``` $ Ejecutamos las migraciones ``` 
-5. ``` $ npm run dev ``` 
-6. Ejecutar los endpoints desde postman con el http-tattoo-studio.postman_collection.json incluido en el directorio "./http"
-7. Tambien puedes compilar a JavaScript y correr el proyecto con los siguientes comandos:
-8. ``` $ npm run build ```
-9. ``` $ npm run start ```
+## Local Installation
+1. Clone the repository and run the following command to install the necessary dependencies:
+```$ npm install``````
+2. Connect your repository to the database by following the instructions in the env.example file, where the JWT key is also stored.
+3. Run migrations:
+``` $ npx typeorm-ts-node-commonjs migration:run -d ./src/db.ts ``` 
+4. Run developer:
+``` $ npm run dev ``` 
+5. Execute the endpoints using Postman with the included http-tattoo-studio.postman_collection.json in the "./http" directory.
+7. You can also compile to JavaScript and run the project with the following commands:
+ ``` $ npm run build ```
+ ``` $ npm run start ```
 
 ## Run in Postman
 
@@ -272,41 +271,40 @@ Tecnologías utilizadas:
 </details>
 
 
-## Futuras funcionalidades
-[ ] Añadir validaciones
-[ ] Arreglar bug en la validación de fecha de la cita con DayJs
-[ ] Arreglar bug por el cual al modificar una cita se puede añadir una fecha incorrecta.
+## Future Features
+ [ ] Add validations
+ [ ] Fix bug in appointment date validation with DayJs
+ [ ] Fix bug where an incorrect date can be added when modifying an appointment.
 
-## Contribuciones
-Las sugerencias y aportaciones son siempre bienvenidas.  
+## Contributions
+Suggestions and contributions are always welcome.
 
-Puedes hacerlo de dos maneras:
+Create a fork of the repository
 
-1. Abriendo una issue
-2. Crea un fork del repositorio
-    - Crea una nueva rama  
+1. By opening an issue.
+2. Create a fork of the repository
+    - Create a new branch
         ```
         $ git checkout -b feature/nombreUsuario-mejora
         ```
-    - Haz un commit con tus cambios 
+    - Commit your changes
         ```
         $ git commit -m 'feat: mejora X cosa'
         ```
-    - Haz push a la rama 
+    - Push the branch
         ```
         $ git push origin feature/nombreUsuario-mejora
         ```
-    - Abre una solicitud de Pull Request
+    - Open a Pull Request.
 
-## Licencia
-Este proyecto se encuentra bajo una licencia MIT.
+## License
 
+This project is under an MIT license.
 
-## Desarrollo:
+## Contact
 
 Paco Fuentes. 2023
 
-## Contacto
 <a href = "mailto:pacofuentes.work@gmail.com"><img src="https://img.shields.io/badge/Gmail-C6362C?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
 <a href="https://www.linkedin.com/in/paco-fuentes-805a40290/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
 </p>
