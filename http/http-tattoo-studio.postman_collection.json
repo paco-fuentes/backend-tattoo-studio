@@ -1,0 +1,1086 @@
+{
+	"info": {
+		"_postman_id": "05249675-7766-40ce-aea4-af483af6d4de",
+		"name": "http-tattoo-studio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30593617"
+	},
+	"item": [
+		{
+			"name": "helloworld",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/helloworld",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"helloworld"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin-register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstname\": \"Juan Manuel\",\n    \"lastname\": \"Apellido Aburrido\",\n    \"email\": \"admin@admin.com\",\n    \"password\": \"12345\",\n    \"phone\": \"123456789\",\n    \"adress\": \"Calle del Admin, 12, 3, 46011, Valencia, España\",\n    \"role\":\"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/staff/admin",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"staff",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin-login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"admin@admin.com\",\n    \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/staff/login",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"staff",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all-tattoo-artist",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/user/getAllTattooArtist",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"getAllTattooArtist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-register-1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"paco@paco.com\",\n    \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/register",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-login-1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"paco@paco.com\",\n    \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-register-2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"simon@simon.com\",\n    \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/register",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-login-2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"simon@simon.com\",\n    \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-register-3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"sara@sara.com\",\n    \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/register",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-login-3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"sara@sara.com\",\n    \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-register-4",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"maria@maria.com\",\n    \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/register",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-login-4",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"maria@maria.com\",\n    \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-register-5",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"johnny@johnny.com\",\n    \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/register",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-login-5",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"johnny@johnny.com\",\n    \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/profile",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-allmyappointments",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"paco\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/myappointments",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"myappointments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-one-appointment",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/user/myappointments/1",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"myappointments",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-update-profile",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstname\": \"paco\",\n    \"lastname\": \"fuentes\",\n    \"email\": \"paco@paco.com\",\n    \"password\": \"12345\",\n    \"phone\": \"666666666\",\n    \"adress\": \"Calle Sin numero, 12, pta.3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/profile",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-create-appointment-1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tattoo_id\": \"1\",\n    \"observations\": \"En toda la cara de calavera lo quiero\",\n    \"date\": \"10-11-2023\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/appointment",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-create-appointment-2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tattoo_id\":\"2\",\n    \"observations\":\"Quiero un tatuaje en la cara y este me llama la atencion, ¿Por qué es tan barato?\",\n    \"date\": \"2-11-2023\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/appointment",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-create-appointment-3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tattoo_id\":\"3\",\n    \"observations\":\"¿Puedo ponerme la lágrima en el tobillo o quedará mal? llámame si puedes\",\n    \"date\": \"6-11-2023\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/appointment",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-create-appointment-4",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tattoo_id\": \"4\",\n    \"observations\": \"Quiero costillas de robot y el de los parpados el mismo día, ¿¿podré??\",\n    \"date\": \"8-11-2023\",\n    \"appointment_time\": \"morning\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/appointment",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-create-appointment-5",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tattoo_id\": \"5\",\n    \"observations\": \"necesito parpados y robot, necesito cambiar mi vida o acabaré en un bootcamp\",\n    \"date\": \"8-11-2023\",\n    \"appointment_time\": \"afternoon\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/appointment",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-create-appointment-6",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tattoo_id\": \"6\",\n    \"observations\": \"Mi hijo pequeño se ha enfadado porque no tiene disfraz de halloween, estoy muy ocupado, ¿de verdad dura un año?\",\n    \"date\": \"11-11-2023\",\n    \"appointment_time\": \"afternoon\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/appointment",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-update-appointment",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"date\": \"9-12-2024\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/myappointments/2",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"myappointments",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-delete-appointment",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/myappointments/111",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"myappointments",
+						"111"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "staff-register-1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstname\": \"Juan Manuel\",\n    \"lastname\": \"El Tuerto\",\n    \"email\": \"juan@manuel.com\",\n    \"password\": \"12345\",\n    \"phone\": \"99999999\",\n    \"adress\": \"Calle con número, n/a\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/staff/register",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"staff",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "staff-login-1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"juan@manuel.com\",\n    \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/staff/login",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"staff",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "staff-register-2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstname\": \"Jesus Vazquez\",\n    \"lastname\": \"El Motoro\",\n    \"email\": \"jesus@vazquez.com\",\n    \"password\": \"12345\",\n    \"phone\": \"633337456\",\n    \"adress\": \"Calle con número aveces, n/a\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/staff/register",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"staff",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "staff-login-2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"jesus@vazquez.com\",\n    \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/staff/login",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"staff",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "staff-register-3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstname\": \"Antoninno Micaelo\",\n    \"lastname\": \"Angelino Di L'infierno\",\n    \"email\": \"satanas@tequiero.com\",\n    \"password\": \"12345\",\n    \"phone\": \"677422311\",\n    \"adress\": \"C/ L' infernno, 66, 6\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/staff/register",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"staff",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "staff-login-3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"satanas@tequiero.com\",\n    \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/staff/login",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"staff",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "staff-addwork-1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"product_type\": \"tattoo\",\n    \"title\": \"caravera\",\n    \"description\": \"tatuaje de calavera del tamaño de una cara\",\n    \"price\": \"99.99\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/staff/addwork",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"staff",
+						"addwork"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "staff-addwork-2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"product_type\": \"tattoo\",\n\t\"title\": \"caravera 2\",\n\t\"description\": \"tatuaje de fuego y calaveras para la cara\",\n\t\"price\": \"7.99\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/staff/addwork",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"staff",
+						"addwork"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "staff-addwork-3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"product_type\": \"tattoo\",\n\t\"title\": \"lágrima\",\n\t\"description\": \"tatuaje de lagrima de fuego\",\n\t\"price\": \"9.99\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/staff/addwork",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"staff",
+						"addwork"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "staff-addwork-4",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"product_type\": \"tattoo\",\n\t\"title\": \"costillas robot\",\n\t\"description\": \"tatuaje de costillas de robot\",\n\t\"price\": \"79.99\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/staff/addwork",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"staff",
+						"addwork"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "staff-addwork-5",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"product_type\": \"tattoo\",\n\t\"title\": \"sin parpados\",\n\t\"description\": \"un ... tatuaje... de ojos abiertos. Incluye parches para dormir\",\n\t\"price\": \"379.99\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/staff/addwork",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"staff",
+						"addwork"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "staff-addwork-6",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"product_type\": \"tattoo\",\n\t\"title\": \"Huesos\",\n\t\"description\": \"Para parecer un esqueleto en halloween... ¡y todo el año!\",\n\t\"price\": \"579.99\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/staff/addwork",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"staff",
+						"addwork"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "staff-allmyappointments",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/staff/myappointments",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"staff",
+						"myappointments"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
