@@ -1,4 +1,4 @@
-# Welcome to my backend app
+# Backend for a Tattoo Studio Website
 
 <details>
   <summary>Content 📝</summary>
