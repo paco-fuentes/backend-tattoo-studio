@@ -1,13 +1,15 @@
 // primero importolas dependencias y luego los imports de cada archivo
 
 // import express
-import express, { Request, Response } from "express"
+import express, { Request, Response } from "express";
 // lo importo antes 
-import 'dotenv/config'
+import 'dotenv/config';
+// import cors para entrar desde mi front
+import cors from "cors";
 
 // routes
-import { router as routerUser } from "./routes/userRoutes"
-import { router as routerStaff } from "./routes/staffRoutes"
+import { router as routerUser } from "./routes/userRoutes";
+import { router as routerStaff } from "./routes/staffRoutes";
 
 // import object from db.ts
 import { AppDataSource } from "./db";
@@ -16,6 +18,8 @@ import { AppDataSource } from "./db";
 const app = express();
 // express.json middleware
 app.use(express.json());
+// use cors
+app.use(cors())
 // port const
 const PORT = process.env.PORT || 3000;
 
