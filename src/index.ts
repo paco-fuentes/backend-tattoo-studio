@@ -24,7 +24,6 @@ app.get('/helloworld', (req: Request, res: Response) => {
   res.send(`<h1 style="color:cyan">Hello World!</h1><img src="https://http.cat/images/200.jpg">`)
 });
 
-
 app.use('/user', routerUser)
 app.use('/staff', routerStaff)
 

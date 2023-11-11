@@ -3,10 +3,11 @@ import { registerStaff, loginStaff, registerWork, getAllMyAppointments, register
 import { auth } from "../middleware/auth";
 import { isWorker } from "../middleware/isWorker"
 import { isAdmin } from "../middleware/isAdmin";
+import { isSuperAdmin } from "../middleware/isSuperAdmin";
 
 
 const router = Router();
-router.post('/admin', registerAdmin)
+router.post('/admin', registerAdmin);
 router.post('/register', auth, isAdmin, registerStaff);
 router.post('/login', loginStaff)
 router.post('/addwork',  auth, isWorker, registerWork)

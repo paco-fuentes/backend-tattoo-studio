@@ -142,6 +142,7 @@ const loginStaff = async (req: Request, res: Response) => {
     }
 }
 
+// esto deberia ir en su Appointment controller
 const getAllMyAppointments = async (req: Request, res: Response) => {
     try {
 
@@ -175,6 +176,7 @@ const registerWork = async (req: Request, res: Response) => {
         const product_type = req.body.product_type;
         const title = req.body.title;
         const description = req.body.description;
+        const img_url = req.body.img_url;
         const time_amount = req.body.time_amount;
         const price = req.body.price;
 
@@ -183,6 +185,7 @@ const registerWork = async (req: Request, res: Response) => {
             product_type: product_type,
             title: title,
             description: description,
+            img_url: img_url,
             time_amount: time_amount,
             price: price
         }).save();

@@ -37,6 +37,12 @@ export class CreateTableTattooStudioProducts1699098448825 implements MigrationIn
                         isUnique: true
                     },
                     {
+                        name: "img_url",
+                        type: "varchar",
+                        length: "768",
+                        isUnique: true
+                    },
+                    {
                         name: "time_amount",
                         type: "enum",
                         enum: ["one_session", "two_sessions"],

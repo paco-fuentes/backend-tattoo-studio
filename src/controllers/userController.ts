@@ -434,14 +434,15 @@ const getAllTattooArtist = async (req: Request, res: Response) => {
     try {
         const allTattoArtist = await Staff.find({
             where: {
-                id: req.body.tattoo_artist_id
+                id: req.body.tattoo_artist_id,
+                role: "worker"
             }
         })
 
         return res.json(
             {
                 success: true,
-                message: "profile user retrieved",
+                message: "All tattoo artist avaible retrieved",
                 data: allTattoArtist
                 // data: user?.email
             });

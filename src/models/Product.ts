@@ -20,6 +20,9 @@ export class Product extends BaseEntity {
     description!: string
 
     @Column()
+    img_url!: string
+
+    @Column()
     time_amount!: string
 
     @Column()
