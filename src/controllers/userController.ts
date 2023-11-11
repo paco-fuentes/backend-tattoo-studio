@@ -468,7 +468,7 @@ const getAllTattoos = async (req: Request, res: Response) => {
         return res.json(
             {
                 success: true,
-                message: "profile user retrieved",
+                message: "All tattoos retrieved",
                 data: allTattoos
                 // data: user?.email
             });
