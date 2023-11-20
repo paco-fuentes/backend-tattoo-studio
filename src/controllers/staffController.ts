@@ -128,7 +128,8 @@ const loginStaff = async (req: Request, res: Response) => {
             {
                 success: true,
                 message: "User logged succesfully",
-                token: token
+                token: token,
+                role: user.role
             }
         )
     } catch (error) {
@@ -146,7 +147,7 @@ const loginStaff = async (req: Request, res: Response) => {
 const getAllMyAppointments = async (req: Request, res: Response) => {
     try {
 
-        const allmyappointmentes = await Appointment.find({
+        const allmyappointments = await Appointment.find({
             where: {
                 tattoo_artist_id: req.token.id
             }
@@ -155,15 +156,15 @@ const getAllMyAppointments = async (req: Request, res: Response) => {
         return res.json(
             {
                 success: true,
-                message: "profile user retrieved",
-                data: allmyappointmentes
+                message: "All appointments user retrieved",
+                data: allmyappointments
                 // data: user?.email
             });
     } catch (error) {
         return res.status(500).json(
             {
                 success: false,
-                message: "user can't get profile",
+                message: "worker can't get all appointments",
                 error: error
             }
         )
