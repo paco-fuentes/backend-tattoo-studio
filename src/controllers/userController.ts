@@ -199,7 +199,7 @@ const createAppointment = async (req: Request, res: Response) => {
     const tattoo_artist_id = currentTattoo.tattoo_artist_id;
 
     const myDateEntry = date as string;
-    const myDateFormated = dayjs(myDateEntry, "DD-MM-YYYY", true).format(
+    const myDateFormated = dayjs(myDateEntry, "YYYY-MM-DD", true).format(
       "DD-MM-YYYY"
     );
 
@@ -294,6 +294,7 @@ const getAllMyAppointments = async (req: Request, res: Response) => {
       where: {
         user_id: req.token.id,
       },
+      relations: ["tattoo", "tattooArtist"], // Se hace referencia al modelo
     });
 
     return res.json({
@@ -374,7 +375,7 @@ const updateAppointment = async (req: Request, res: Response) => {
     }
 
     const myDateEntry = appointment.date as string;
-    const myDateFormated = dayjs(myDateEntry, "DD-MM-YYYY", true).format(
+    const myDateFormated = dayjs(myDateEntry, "YYYY-MM-DD", true).format(
       "DD-MM-YYYY"
     );
 
