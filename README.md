@@ -72,6 +72,13 @@ Used stacks:
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/30593617-05249675-7766-40ce-aea4-af483af6d4de?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D30593617-05249675-7766-40ce-aea4-af483af6d4de%26entityType%3Dcollection%26workspaceId%3D624a1798-d9bc-4ee8-842a-0c53f919503d)
 
+## SQL Data
+
+Data has been added to populate the SQL tables with users, staff, appointments, and tattoos in the HTTP folder.
+
+The 'staff' table users have the password: 12345
+The 'users' table users have the password: 12345678
+
 ## Endpoints
 <details>
 <summary>Endpoints</summary>
